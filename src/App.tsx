@@ -26,12 +26,12 @@ const match= newItems.find((target)=>target.id===item.id)
   }
 
   function decreaseQuantity(item: StoreItem) {
-    if (item.stock === 0) return;
+    if (item.inCart > 0){ 
    const newItems= structuredClone(items)
    const match= newItems.find((target)=>target.id===item.id)
 match.inCart--;
 match.stock++;
-    setItems(newItems)
+    setItems(newItems)}
   }
 
   return (

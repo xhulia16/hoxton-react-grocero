@@ -13,7 +13,7 @@ const storeItems: Array<StoreItem> = [
         name: "beetroot",
         price: 0.35,
         stock: 10,
-        inCart: 4,
+        inCart: 0,
       },
       {
         id: 2,
@@ -41,7 +41,7 @@ const storeItems: Array<StoreItem> = [
         name: "avocado",
         price: 0.75,
         stock: 10,
-        inCart: 1,
+        inCart: 0,
       },
       {
         id: 6,
@@ -62,14 +62,14 @@ const storeItems: Array<StoreItem> = [
         name: "berry",
         price: 0.30,
         stock: 10,
-        inCart: 7,
+        inCart: 0,
       },
       {
         id: 9,
         name: "blueberry",
         price: 0.65,
         stock: 10,
-        inCart: 5,
+        inCart: 0,
       },
       {
         id: 10,
