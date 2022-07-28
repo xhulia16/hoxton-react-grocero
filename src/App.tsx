@@ -8,11 +8,16 @@ function getItemImagePath (item: StoreItem) {
   return `assets/icons/${id}-${item.name}.svg`
 }
 
+
 function App() {
   const[items, setItems]=useState(storeItems) 
+  //const[cartItems, setCartItems]=useState(storeItems)
+
+  const getCartItems= items.filter((item) => item.inCart>0);
+  console.log(getCartItems)
+
   return (
     <div className="App">
-      <body>
     <header id="store">
 
       <h1>Grocero</h1>
@@ -30,11 +35,10 @@ function App() {
 
     <main id="cart">
       <h2>Your Cart</h2>
-
       <div className="cart--item-list-container">
         <ul className="item-list cart--item-list">
-        {items.map((item)=>(
-           <li>
+        {getCartItems.map((item)=>(
+           <li key={item.id}>
            <img className="cart--item-icon" src={getItemImagePath(item)} alt="carrot"/>
            <p>{item.name}</p>
            <button className="quantity-btn remove-btn center">-</button>
@@ -46,7 +50,7 @@ function App() {
          
         </ul>
       </div>
-      
+
       <div className="total-section">
         <div>
           <h3>Total</h3>
@@ -57,7 +61,7 @@ function App() {
         </div>
       </div>
     </main>
-    </body>
+
     </div>
   )
 }
