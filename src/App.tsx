@@ -6,15 +6,28 @@ import storeItems, { StoreItem } from "./data/data";
 function getItemImagePath (item: StoreItem) {
   let id = String(item.id).padStart(3, '0')
   return `assets/icons/${id}-${item.name}.svg`
+ 
 }
 
+function getCartItems (items:StoreItem[]) {
+  return items.filter((item) => item.inCart>0)
+}
+
+function increaseQuantity (item: StoreItem) {
+  if (item.stock === 0) return
+  item.inCart++
+  item.stock--
+}
+
+function decreaseQuantity (item: StoreItem) {
+  if (item.inCart > 0) {
+    item.inCart--
+    item.stock++
+  }
+}
 
 function App() {
   const[items, setItems]=useState(storeItems) 
-  //const[cartItems, setCartItems]=useState(storeItems)
-
-  const getCartItems= items.filter((item) => item.inCart>0);
-  console.log(getCartItems)
 
   return (
     <div className="App">
@@ -27,7 +40,9 @@ function App() {
       <div className=".store--item-icon">
       <img src={getItemImagePath(item)}/>
       </div>
-    <button>Add to cart ({item.stock})</button>
+    <button onClick={()=>{increaseQuantity(item)}}>
+      Add to cart ({item.stock}) 
+    </button>
     </li>)
         )}
       </ul>
@@ -37,7 +52,8 @@ function App() {
       <h2>Your Cart</h2>
       <div className="cart--item-list-container">
         <ul className="item-list cart--item-list">
-        {getCartItems.map((item)=>(
+
+        {getCartItems(items).map((item)=>(
            <li key={item.id}>
            <img className="cart--item-icon" src={getItemImagePath(item)} alt="carrot"/>
            <p>{item.name}</p>
