@@ -1,75 +1,31 @@
 import './App.css'
 
 import { useState } from 'react'
-//import storeItems, { StoreItem } from "./data/data";
+import storeItems, { StoreItem } from "./data/data";
+
+function getItemImagePath (item: StoreItem) {
+  let id = String(item.id).padStart(3, '0')
+  return `assets/icons/${id}-${item.name}.svg`
+}
 
 function App() {
+  const[items, setItems]=useState(storeItems) 
   return (
     <div className="App">
       <body>
     <header id="store">
+
       <h1>Grocero</h1>
       <ul className="item-list store--item-list">
-      <li>
+
+        {items.map((item)=> (<li>
       <div className=".store--item-icon">
-      <img src="./assets/icons/001-beetroot.svg"/>
+      <img src={getItemImagePath(item)}/>
       </div>
-    <button>Add to cart (8)</button>
-    </li>
-    <li>
-    <div className=".store--item-icon">
-      <img src="assets/icons/002-carrot.svg"/>
-      </div>
-      <button>Add to cart (2)</button>
-      </li>
-      <li>
-      <div className=".store--item-icon">
-      <img src="assets/icons/003-apple.svg"/>
-      </div>
-      <button>Add to cart (1)</button>
-      </li>
-      <li>
-      <div className=".store--item-icon">
-      <img src="assets/icons/004-apricot.svg"/>
-      </div>
-      <button>Add to cart (1)</button>
-      </li>
-      <li>
-      <div className=".store--item-icon">
-      <img src="assets/icons/005-avocado.svg"/>
-      </div>
-      <button>Add to cart (1)</button>
-      </li>
-      <li>
-      <div className=".store--item-icon">
-      <img src="assets/icons/006-bananas.svg"/>
-      </div>
-      <button>Add to cart (1)</button>
-      </li>
-      <li>
-      <div className=".store--item-icon">
-      <img src="assets/icons/007-bell-pepper.svg"/>
-      </div>
-      <button>Add to cart (1)</button>
-      </li>
-      <li>
-      <div className=".store--item-icon">
-      <img src="assets/icons/008-berry.svg"/>
-      </div>
-      <button>Add to cart (1)</button>
-      </li>
-      <li>
-      <div className=".store--item-icon">
-      <img src="assets/icons/009-blueberry.svg"/>
-      </div>
-      <button>Add to cart (1)</button>
-      </li>
-      <li>
-      <div className=".store--item-icon">
-      <img src="assets/icons/010-eggplant.svg"/>
-      </div>
-      <button>Add to cart (1)</button>
-      </li>
+    <button>Add to cart ({item.stock})</button>
+    </li>)
+        )}
+      
       </ul>
     </header>
 
