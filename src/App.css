@@ -162,14 +162,14 @@ button {
   place-items: center;
 }
 
+
 .quantity-btn {
   width: 20px;
   height: 20px;
   padding: 0;
-
   border-radius: 0.25rem;
-
   font-weight: bold;
+  place-content: center;
 }
 
 .remove-btn {
@@ -266,4 +266,5 @@ button,
 textarea,
 select {
   font: inherit;
+  font-size: 11px;
 }

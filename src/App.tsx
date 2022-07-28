@@ -14,7 +14,7 @@ function App() {
       <div className=".store--item-icon">
       <img src="./assets/icons/001-beetroot.svg"/>
       </div>
-    <button>Add to cart (10)</button>
+    <button>Add to cart (8)</button>
     </li>
     <li>
     <div className=".store--item-icon">
