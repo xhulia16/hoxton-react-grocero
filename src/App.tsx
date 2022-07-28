@@ -18,14 +18,13 @@ function App() {
       <h1>Grocero</h1>
       <ul className="item-list store--item-list">
 
-        {items.map((item)=> (<li>
+        {items.map((item)=> (<li key={item.id}>
       <div className=".store--item-icon">
       <img src={getItemImagePath(item)}/>
       </div>
     <button>Add to cart ({item.stock})</button>
     </li>)
         )}
-      
       </ul>
     </header>
 
@@ -34,16 +33,20 @@ function App() {
 
       <div className="cart--item-list-container">
         <ul className="item-list cart--item-list">
-          <li>
-        <img className="cart--item-icon" src="assets/icons/002-carrot.svg" alt="carrot"/>
-        <p>carrot</p>
-        <button className="quantity-btn remove-btn center">-</button>
-        <span className="quantity-text center">5</span>
-        <button className="quantity-btn add-btn center">+</button>
-        </li>
+        {items.map((item)=>(
+           <li>
+           <img className="cart--item-icon" src={getItemImagePath(item)} alt="carrot"/>
+           <p>{item.name}</p>
+           <button className="quantity-btn remove-btn center">-</button>
+           <span className="quantity-text center">{item.inCart}</span>
+           <button className="quantity-btn add-btn center">+</button>
+           </li>
+        )
+        )}
+         
         </ul>
       </div>
-
+      
       <div className="total-section">
         <div>
           <h3>Total</h3>
