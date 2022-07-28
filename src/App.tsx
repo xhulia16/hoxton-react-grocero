@@ -12,26 +12,36 @@ function getCartItems(items: StoreItem[]) {
   return items.filter((item) => item.inCart > 0);
 }
 
-
 function App() {
   const [items, setItems] = useState(storeItems);
 
   function increaseQuantity(item: StoreItem) {
     if (item.stock === 0) return;
-   const newItems= structuredClone(items)
-const match= newItems.find((target)=>target.id===item.id)
+    const newItems = structuredClone(items);
+    const match = newItems.find((target) => target.id === item.id);
     match.inCart++;
     match.stock--;
-    setItems(newItems)
+    setItems(newItems);
   }
 
   function decreaseQuantity(item: StoreItem) {
-    if (item.inCart > 0){ 
-   const newItems= structuredClone(items)
-   const match= newItems.find((target)=>target.id===item.id)
-match.inCart--;
-match.stock++;
-    setItems(newItems)}
+    if (item.inCart > 0) {
+      const newItems = structuredClone(items);
+      const match = newItems.find((target) => target.id === item.id);
+      match.inCart--;
+      match.stock++;
+      setItems(newItems);
+    }
+  }
+
+  function calculateTotal() {
+    let totalPrice = 0;
+    {
+      getCartItems(items).map(
+        (item) => (totalPrice = totalPrice + item.price * item.inCart)
+      );
+    }
+    return totalPrice.toFixed(2);;
   }
 
   return (
@@ -60,7 +70,6 @@ match.stock++;
         <h2>Your Cart</h2>
         <div className="cart--item-list-container">
           <ul className="item-list cart--item-list">
-
             {getCartItems(items).map((item) => (
               <li key={item.id}>
                 <img
@@ -69,17 +78,23 @@ match.stock++;
                   alt="carrot"
                 />
                 <p>{item.name}</p>
-                <button className="quantity-btn remove-btn center"
-                onClick={() => {
-                  decreaseQuantity(item);
-                }}
-                >-</button>
+                <button
+                  className="quantity-btn remove-btn center"
+                  onClick={() => {
+                    decreaseQuantity(item);
+                  }}
+                >
+                  -
+                </button>
                 <span className="quantity-text center">{item.inCart}</span>
-                <button className="quantity-btn add-btn center"
-                onClick={() => {
-                  increaseQuantity(item);
-                }}
-                >+</button>
+                <button
+                  className="quantity-btn add-btn center"
+                  onClick={() => {
+                    increaseQuantity(item);
+                  }}
+                >
+                  +
+                </button>
               </li>
             ))}
           </ul>
@@ -91,7 +106,7 @@ match.stock++;
           </div>
 
           <div>
-            <span className="total-number">£0.00</span>
+            <span className="total-number">£{calculateTotal()}</span>
           </div>
         </div>
       </main>
