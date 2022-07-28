@@ -1,3 +1,4 @@
+import "./cartItemsContainer.css";
 //@ts-ignore
 function CartItemsContainer({getCartItems, items, getItemImagePath, decreaseQuantity, increaseQuantity}){
     return(

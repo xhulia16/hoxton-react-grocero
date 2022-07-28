@@ -43,25 +43,24 @@ function App() {
         (item) => (totalPrice = totalPrice + item.price * item.inCart)
       );
     }
-    return totalPrice.toFixed(2);;
+    return totalPrice.toFixed(2);
   }
 
   return (
     <div className="App">
-     <Header
-     items={items}
-     getItemImagePath={getItemImagePath}
-     increaseQuantity={increaseQuantity}
-     />
-    <Main
-    getCartItems={getCartItems}
-     items={items}
-    getItemImagePath={getItemImagePath}
-     decreaseQuantity={decreaseQuantity}
-    increaseQuantity={increaseQuantity}
-      calculateTotal={calculateTotal}
-    />
-      
+      <Header
+        items={items}
+        getItemImagePath={getItemImagePath}
+        increaseQuantity={increaseQuantity}
+      />
+      <Main
+        getCartItems={getCartItems}
+        items={items}
+        getItemImagePath={getItemImagePath}
+        decreaseQuantity={decreaseQuantity}
+        increaseQuantity={increaseQuantity}
+        calculateTotal={calculateTotal}
+      />
     </div>
   );
 }

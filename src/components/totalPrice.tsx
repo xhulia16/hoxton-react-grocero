@@ -1,9 +1,11 @@
+import "./totalPrice.css";
+
 //@ts-ignore
-function TotalPrice({calculateTotal}){
-    return(
-        <div>
-          <span className="total-number">£{calculateTotal()}</span>
-        </div>
-    )
+function TotalPrice({ calculateTotal }) {
+  return (
+    <div>
+      <span className="total-number">£{calculateTotal()}</span>
+    </div>
+  );
 }
-export default TotalPrice
+export default TotalPrice;

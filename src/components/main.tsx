@@ -1,3 +1,5 @@
+import "./main.css";
+
 import CartItemsContainer from "./cartItemsContainer";
 import TotalPrice from "./totalPrice";
 
@@ -6,23 +8,20 @@ function Main({getCartItems,items,getItemImagePath,decreaseQuantity,increaseQuan
   return (
     <main id="cart">
       <h2>Your Cart</h2>
-
-      <div className="total-section">
-        <div>
-          <h3>Total</h3>
-        </div>
-        <CartItemsContainer
+      <CartItemsContainer
           getCartItems={getCartItems}
           items={items}
           getItemImagePath={getItemImagePath}
           decreaseQuantity={decreaseQuantity}
           increaseQuantity={increaseQuantity}
         />
-        
+      <div className="total-section">
+        <div>
+          <h3>Total</h3>
+        </div>
         <TotalPrice
         calculateTotal={calculateTotal}
         />
-
       </div>
     </main>
   );
